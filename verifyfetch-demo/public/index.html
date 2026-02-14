@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VerifyFetch Demo</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .section { border: 1px solid #ccc; padding: 1rem; margin-bottom: 2rem; border-radius: 8px; }
+    .progress-container { margin: 1rem 0; }
+    progress { width: 100%; height: 20px; }
+    .controls { display: flex; gap: 1rem; }
+    button { padding: 0.5rem 1rem; cursor: pointer; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .status { font-weight: bold; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>VerifyFetch vs Standard Fetch Demo</h1>
+  <p>Demonstrating download interruption and resumption.</p>
+
+  <!-- Standard Fetch Section -->
+  <div class="section">
+    <h2>Standard Fetch (Manual Resume)</h2>
+    <div class="status" id="fetch-status">Ready</div>
+    <div class="progress-container">
+      <progress id="fetch-progress" value="0" max="100"></progress>
+    </div>
+    <div class="controls">
+      <button id="fetch-btn-start">Start Download</button>
+      <button id="fetch-btn-pause" disabled>Pause</button>
+      <button id="fetch-btn-resume" disabled>Resume</button>
+    </div>
+    <p><small>Note: This implementation manually handles Range headers and chunks.</small></p>
+  </div>
+
+  <!-- VerifyFetch Section -->
+  <div class="section">
+    <h2>VerifyFetch (Built-in Resume)</h2>
+    <div class="status" id="verify-status">Ready</div>
+    <div class="progress-container">
+      <progress id="verify-progress" value="0" max="100"></progress>
+    </div>
+    <div class="controls">
+      <button id="verify-btn-start">Start Download</button>
+      <button id="verify-btn-pause" disabled>Pause</button>
+      <button id="verify-btn-resume" disabled>Resume</button>
+    </div>
+    <p><small>Note: Resume is handled automatically by the library via IndexedDB.</small></p>
+  </div>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>
