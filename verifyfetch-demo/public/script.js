@@ -211,10 +211,14 @@ async function pauseVerify() {
     if (verifyController) {
         verifyController.abort();
         verifyController = null;
+
+        verifyIsPaused = true;
+        updateVerifyUI("Paused");
     }
 }
 
 async function resumeVerify() {
+    verifyIsPaused = false;
     updateVerifyUI("Resuming...");
     await runVerifyFetch();
 }
