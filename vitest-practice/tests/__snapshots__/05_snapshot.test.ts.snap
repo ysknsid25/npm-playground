@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`スナップショットテスト > HTML 文字列のスナップショット 1`] = `
+"<div class="user">
+  <h2>Alice</h2>
+  <p>Age: 30</p>
+  <p>Email: alice@example.com</p>
+</div>"
+`;
+
+exports[`スナップショットテスト > オブジェクトのスナップショット 1`] = `
+{
+  "debug": true,
+  "host": "localhost",
+  "port": 8080,
+  "timeout": 5000,
+}
+`;

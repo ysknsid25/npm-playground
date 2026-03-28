@@ -1,0 +1,22 @@
+{
+  "name": "vitest-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@vitest/ui": "^4.1.2",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
+  }
+}
