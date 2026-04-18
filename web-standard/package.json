@@ -1,0 +1,15 @@
+{
+  "name": "reporting-api-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npx tsx server.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.14",
+    "hono": "^4.12.14"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}
