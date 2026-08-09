@@ -1,0 +1,34 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "valibot to-json-schema sample",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/sample": {
+      "get": {
+        "summary": "Sample endpoint",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sample"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Sample": {
+        "type": "string",
+        "nullable": true
+      }
+    }
+  }
+}

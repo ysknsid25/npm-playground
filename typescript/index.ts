@@ -1,59 +1,43 @@
-import { defineCommand, runMain } from "citty";
+import { toJsonSchema } from '@valibot/to-json-schema';
+import * as v from 'valibot';
+import { writeFileSync } from 'node:fs';
 
-const greet = defineCommand({
-    meta: {
-        name: "greet",
-        description: "Greet someone",
+const schema = v.nullable(v.string());
+
+// OpenAPI 3.0 形式で出力
+const result = toJsonSchema(schema, { target: 'openapi-3.0' });
+// => { type: "string", nullable: true }
+
+// Swagger UI などで読めるように、完全な OpenAPI ドキュメントに埋め込む
+const openapiDocument = {
+    openapi: '3.0.3',
+    info: {
+        title: 'valibot to-json-schema sample',
+        version: '1.0.0',
     },
-    args: {
-        name: {
-            type: "positional",
-            description: "Your name",
-            required: true,
+    paths: {
+        '/sample': {
+            get: {
+                summary: 'Sample endpoint',
+                responses: {
+                    '200': {
+                        description: 'OK',
+                        content: {
+                            'application/json': {
+                                schema: { $ref: '#/components/schemas/Sample' },
+                            },
+                        },
+                    },
+                },
+            },
         },
-        friendly: {
-            type: "boolean",
-            description: "Use friendly greeting",
+    },
+    components: {
+        schemas: {
+            Sample: result,
         },
     },
-    run({ args }) {
-        console.log(`${args.friendly ? "Hi" : "Greetings"} ${args.name}!`);
-    },
-});
+};
 
-const byebye = defineCommand({
-    meta: {
-        name: "byebye",
-        description: "Goodbye someone",
-    },
-    args: {
-        name: {
-            type: "positional",
-            description: "Your name",
-            required: true,
-        },
-    },
-    run({ args }) {
-        console.log(`byebye👋 ${args.name}!`);
-    },
-    setup({ args }) {
-        console.log(`now setup ${args.name}`);
-    },
-    cleanup({ args }) {
-        console.log(`now cleanup ${args.name}`);
-    },
-});
-
-const main = defineCommand({
-    meta: {
-        name: "hello",
-        version: "1.0.0",
-        description: "My Awesome CLI App",
-    },
-    subCommands: {
-        greet,
-        byebye,
-    },
-});
-
-runMain(main);
+writeFileSync('openapi.json', JSON.stringify(openapiDocument, null, 2));
+console.log('openapi.json を生成しました');

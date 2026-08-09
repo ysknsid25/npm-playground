@@ -14,7 +14,9 @@
         "typescript": "^5.6.3"
     },
     "dependencies": {
+        "@valibot/to-json-schema": "^1.7.1",
         "citty": "^0.1.6",
-        "secretlint": "^9.3.0"
+        "secretlint": "^9.3.0",
+        "valibot": "^1.4.1"
     }
 }
